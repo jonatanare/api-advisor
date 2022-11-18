@@ -18,6 +18,18 @@ async function login (email, password) {
   }
 }
 
+async function validEmail (idAdvisor) {
+  const custumerId = await Advisor.findById(idAdvisor)
+
+  if (custumerId) {
+    await Advisor.findByIdAndUpdate(idAdvisor, { validEmail: true })
+    return 'Email validado ✓'
+  } else {
+    return 'Intente de nuevo'
+  }
+}
+
 export {
-  login
+  login,
+  validEmail
 }

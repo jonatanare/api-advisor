@@ -46,7 +46,7 @@ const advisorSchema = new mongoose.Schema({
     required: false,
     trim: true
   },
-  verify_email: {
+  validEmail: {
     type: Boolean,
     required: false,
     default: false

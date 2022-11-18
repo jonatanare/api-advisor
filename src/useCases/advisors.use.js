@@ -1,6 +1,8 @@
 import { Advisor } from '../models/advisors.model.js'
 import { StatusHttp } from '../libs/statusHttp.js'
 import bcrypt from '../libs/bcrypt.js'
+import jwt from '../libs/jwt.js'
+import { sendConfirmationEmail } from '../libs/sendgrid.js'
 
 async function create (newAdvisor) {
   const { email, password } = newAdvisor
@@ -10,6 +12,8 @@ async function create (newAdvisor) {
   }
   const encryptedPassword = await bcrypt.hash(password)
   const newUser = await Advisor.create({ ...newAdvisor, password: encryptedPassword })
+  const token = jwt.sign({ id: newUser._id, email: newUser.email }, '1h')
+  await sendConfirmationEmail(newUser.email, newUser.name, token)
   return newUser
 }
 

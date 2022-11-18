@@ -65,7 +65,6 @@ async function update (idFile, newData, newFiles) {
       const { bank_file } = bank_file
       newData.photo = bank_file
     }
-    
   }
   const fileFound = await File.findById(idFile)
   if (!fileFound) {
