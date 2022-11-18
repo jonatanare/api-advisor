@@ -80,7 +80,7 @@ router.delete('/:id', auth, async (request, response, next) => {
 router.patch('/:id', auth, upload.any(), async (request, response, next) => {
   try {
     const { id } = request.params
-    const {body, files} = request
+    const { body, files } = request
     const fileUpdated = await filesUsesCases.update(id, body, files)
 
     response.json({
