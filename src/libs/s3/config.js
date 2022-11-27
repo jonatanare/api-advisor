@@ -11,6 +11,7 @@ export default {
     httpOptions: {
       timeout: 90000
     },
+    
     params: {
       ACL: 'public-read',
       Bucket: process.env.AWS_BUCKET_NAME
