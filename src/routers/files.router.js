@@ -56,6 +56,7 @@ router.post('/', auth, upload.any(), async (request, response, next) => {
       }
     })
   } catch (error) {
+    console.log(error);
     next(error)
   }
 })
